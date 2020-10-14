@@ -1,4 +1,4 @@
-//automatically refresh the web page on the hour
+// This setting will automatically update on the hour
 
 $(document).ready(function(){
     let time= moment().format("h:mm:ss");
@@ -21,15 +21,15 @@ $(document).ready(function(){
     },1000);
 }); 
 
-//Element names
+// Names of the elements
 
 let timeBlockContainer = $(".container"); 
 let todaysDateEl= $("#currentDay"); 
 
-//Code generating the current date 
+//C Display to the user the current date
 todaysDateEl.text(moment().format("dddd, MMMM Do")); 
 
-//Code to generate time blocks
+// This javascript creates the time slots
 let timesArr= ["9AM","10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]; 
 
 for (let i=1; i<timesArr.length; i++){
@@ -41,7 +41,7 @@ for (let i=1; i<timesArr.length; i++){
 
 }; 
 
-// Get previously saved items to populate planner
+// Local storage
 let savedDayPlans;
 let locationArr = []; 
 
@@ -67,14 +67,14 @@ function populateSavedEvents(){
 
 populateSavedEvents(); 
 
-//clear local storage
+// Remove local storage
 
 function clearLocalStorage() {
     savedDayPlans=[]; 
     localStorage.setItem("savedDayPlans", savedDayPlans); 
 }
 
-// Save entries in the planner to local storage
+// Save for local storage
 
 function saveEvent(time,input){
     alert("You saved your event!"); 
@@ -140,12 +140,12 @@ $(".time-block").delegate("button", "click", function(){
     populateSavedEvents(); 
 }); 
         
-//Changing colors based on time functions and code 
+// Change of colour depending on the time of day
 
     //getting the current time of day
 let timeOfDay= moment().format("hA"); 
 
-    //Need to get class and select past/present/future and change based on time of day
+    // Allows user to change time format
 let allTimeBlockEl= $(".time-block"); 
 
  for (let i=0; i<allTimeBlockEl.length; i++){
@@ -161,7 +161,7 @@ let allTimeBlockEl= $(".time-block");
     }
 }
    
-//clear button remove events
+// Remove all events
 
 $("#clear").on("click",function(){
     if(confirm("Are you sure you want to clear all saved events?")){
@@ -172,7 +172,7 @@ $("#clear").on("click",function(){
       }
 })
 
-// Save all- I feel like I should have made some of this into functions to avoid repetition  but its hard to wrap my mind around now after the fact 
+// Save function
  $("#saveAll").on("click", function(){   
      for( let i=0; i < allTimeBlockEl.length; i++) {
         let timeBlock= $(allTimeBlockEl[i]); 
